@@ -1,1 +1,1 @@
-web: bin/nucleus-api
+web: bin/little-contacts
