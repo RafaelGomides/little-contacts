@@ -1,0 +1,256 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/api",
+    "paths": {
+        "/contact/": {
+            "get": {
+                "tags": [
+                    "contact"
+                ],
+                "description": "get Contact",
+                "operationId": "ContactController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "contact"
+                ],
+                "description": "create Contact",
+                "operationId": "ContactController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Contact content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Contact"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/contact/email": {
+            "post": {
+                "tags": [
+                    "contact"
+                ],
+                "description": "Envia um email com as informações passadas",
+                "operationId": "ContactController.SendEmail",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Contact content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Contact"
+                    },
+                    "500": {
+                        "description": "alguma coisa aconteceu"
+                    }
+                }
+            }
+        },
+        "/contact/{ID}": {
+            "get": {
+                "tags": [
+                    "contact"
+                ],
+                "description": "get Contact by ID",
+                "operationId": "ContactController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "ID",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    },
+                    "403": {
+                        "description": ":ID is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "contact"
+                ],
+                "description": "update the Contact",
+                "operationId": "ContactController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "ID",
+                        "description": "The ID you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Contact content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    },
+                    "403": {
+                        "description": ":ID is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "contact"
+                ],
+                "description": "delete the Contact",
+                "operationId": "ContactController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "ID",
+                        "description": "The ID you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "ID is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Contact": {
+            "title": "Contact",
+            "type": "object",
+            "properties": {
+                "Cellphone": {
+                    "type": "string"
+                },
+                "Email": {
+                    "type": "string"
+                },
+                "Facebook": {
+                    "type": "string"
+                },
+                "Github": {
+                    "type": "string"
+                },
+                "ID": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Twitter": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "contact",
+            "description": " ContactController operations for Contact\n"
+        }
+    ]
+}
